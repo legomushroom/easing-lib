@@ -13,17 +13,14 @@
 
         this.Quake = {};
         this.Quake.Out = QuakeOut = (function() {
-          function QuakeOut(coef1, coef2) {
-            if (coef1 == null) {
-              coef1 = 5;
-            }
-            if (coef2 == null) {
-              coef2 = 5;
+          function QuakeOut(coef) {
+            if (coef == null) {
+              coef = 5;
             }
             return function(t) {
               var b;
 
-              b = Math.exp(-t * coef1) * Math.cos(Math.PI * 2 * t * coef2);
+              b = Math.exp(-t * coef) * Math.cos(Math.PI * 2 * t * coef);
               return 1 - b;
             };
           }
@@ -32,17 +29,14 @@
 
         })();
         return this.Quake.In = QuakeIn = (function() {
-          function QuakeIn(coef1, coef2) {
-            if (coef1 == null) {
-              coef1 = 1;
-            }
-            if (coef2 == null) {
-              coef2 = 5;
+          function QuakeIn(coef) {
+            if (coef == null) {
+              coef = 5;
             }
             return function(t) {
               var b;
 
-              b = (t * t * Math.cos(Math.PI * 2 * t * coef2)) / coef1;
+              b = t * t * Math.cos(Math.PI * 2 * t * coef);
               return b;
             };
           }

@@ -8,15 +8,15 @@ define 'EaseLib', ->
 			@Quake = {}
 			
 			@Quake.Out = class QuakeOut 
-				constructor:(coef1=5, coef2=5)->
+				constructor:(coef=5)->
 					return (t)->
-						b = Math.exp(-t*coef1)*Math.cos(Math.PI*2*t*coef2)
+						b = Math.exp(-t*coef)*Math.cos(Math.PI*2*t*coef)
 						1 - b
 
 			@Quake.In = class QuakeIn 
-				constructor:(coef1=1, coef2=5)->
+				constructor:(coef=5)->
 					return (t)->
-						b = (t*t*Math.cos(Math.PI*2*t*coef2))/coef1
+						b = t*t*Math.cos(Math.PI*2*t*coef)
 						b
 
 			
