@@ -9,7 +9,7 @@
       }
 
       Easings.prototype.createEasings = function() {
-        var QuakeOut;
+        var QuakeIn, QuakeOut;
 
         this.Quake = {};
         this.Quake.Out = QuakeOut = (function() {
@@ -24,9 +24,6 @@
               var b;
 
               b = Math.exp(-t * coef1) * Math.cos(Math.PI * 2 * t * coef2);
-              if (t >= 1) {
-                return 1;
-              }
               return 1 - b;
             };
           }
@@ -34,15 +31,25 @@
           return QuakeOut;
 
         })();
-        return this.Quake.In = function(t) {
-          var b;
+        return this.Quake.In = QuakeIn = (function() {
+          function QuakeIn(coef1, coef2) {
+            if (coef1 == null) {
+              coef1 = 1;
+            }
+            if (coef2 == null) {
+              coef2 = 5;
+            }
+            return function(t) {
+              var b;
 
-          b = Math.exp(-t * 10) * Math.cos(Math.PI * 2 * t * 10);
-          if (t >= 1) {
-            return 1;
+              b = (t * t * Math.cos(Math.PI * 2 * t * coef2)) / coef1;
+              return b;
+            };
           }
-          return 1 - b;
-        };
+
+          return QuakeIn;
+
+        })();
       };
 
       return Easings;
