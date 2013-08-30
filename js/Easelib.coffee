@@ -20,9 +20,10 @@ define 'EaseLib', ->
 						b
 
 			@Quake.InOut = class QuakeInOut
-				constructor:(coef=5)->
+				constructor:(coef=3)->
 					return (t)->
-						t*t*Math.cos(Math.PI*2*t*coef)*Math.sin(Math.PI*2*t*80)
+						if ( ( t *= 2 ) < 1 ) then return t*t*Math.cos(Math.PI*2*t*coef)
+						1 - Math.exp(-t*coef/4)*Math.cos(Math.PI*2*t*coef)
 						
 
 			

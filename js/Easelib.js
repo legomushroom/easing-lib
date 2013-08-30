@@ -46,10 +46,13 @@ define('EaseLib', function() {
       return this.Quake.InOut = QuakeInOut = (function() {
         function QuakeInOut(coef) {
           if (coef == null) {
-            coef = 5;
+            coef = 3;
           }
           return function(t) {
-            return t * t * Math.cos(Math.PI * 2 * t * coef) * Math.sin(Math.PI * 2 * t * 80);
+            if ((t *= 2) < 1) {
+              return t * t * Math.cos(Math.PI * 2 * t * coef);
+            }
+            return 1 - Math.exp(-t * coef / 4) * Math.cos(Math.PI * 2 * t * coef);
           };
         }
 
