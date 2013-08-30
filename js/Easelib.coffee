@@ -23,5 +23,7 @@ define 'EaseLib', ->
 
 
 	new Easings
+
+	window.a = new Easings
 		
 	
