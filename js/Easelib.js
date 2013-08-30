@@ -8,7 +8,7 @@ define('EaseLib', function() {
     }
 
     Easings.prototype.createEasings = function() {
-      var QuakeIn, QuakeOut;
+      var QuakeIn, QuakeInOut, QuakeOut;
 
       this.Quake = {};
       this.Quake.Out = QuakeOut = (function() {
@@ -27,7 +27,7 @@ define('EaseLib', function() {
         return QuakeOut;
 
       })();
-      return this.Quake.In = QuakeIn = (function() {
+      this.Quake.In = QuakeIn = (function() {
         function QuakeIn(coef) {
           if (coef == null) {
             coef = 5;
@@ -43,11 +43,23 @@ define('EaseLib', function() {
         return QuakeIn;
 
       })();
+      return this.Quake.InOut = QuakeInOut = (function() {
+        function QuakeInOut(coef) {
+          if (coef == null) {
+            coef = 5;
+          }
+          return function(t) {
+            return t * t * Math.cos(Math.PI * 2 * t * coef) * Math.sin(Math.PI * 2 * t * 80);
+          };
+        }
+
+        return QuakeInOut;
+
+      })();
     };
 
     return Easings;
 
   })();
-  new Easings;
-  return window.a = new Easings;
+  return new Easings;
 });

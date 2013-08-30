@@ -19,11 +19,13 @@ define 'EaseLib', ->
 						b = t*t*Math.cos(Math.PI*2*t*coef)
 						b
 
+			@Quake.InOut = class QuakeInOut
+				constructor:(coef=5)->
+					return (t)->
+						t*t*Math.cos(Math.PI*2*t*coef)*Math.sin(Math.PI*2*t*80)
+						
+
 			
 
 
 	new Easings
-
-	window.a = new Easings
-		
-	

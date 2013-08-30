@@ -9,8 +9,11 @@ require(['createGraph', 'Tween', 'EaseLib'], function(createGraph, TWEEN, EaseLi
     target.appendChild(document.createElement("br"));
     target.appendChild(createGraph("Quake.Out", new EaseLib.Quake.Out));
     target.appendChild(createGraph("Quake.In", new EaseLib.Quake.In));
+    target.appendChild(createGraph("Quake.InOut", new EaseLib.Quake.InOut));
     target.appendChild(document.createElement("br"));
-    return target.appendChild(createGraph("Quartic.In", TWEEN.Easing.Quartic.In));
+    target.appendChild(createGraph("Quartic.In", TWEEN.Easing.Quartic.In));
+    target.appendChild(createGraph("Quartic.Out", TWEEN.Easing.Quartic.Out));
+    return target.appendChild(createGraph("Quartic.InOut", TWEEN.Easing.Quartic.InOut));
   };
   animate = function() {
     requestAnimationFrame(animate);
