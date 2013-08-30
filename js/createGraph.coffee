@@ -1,6 +1,7 @@
 define 'createGraph', ['Tween'], (TWEEN)->
-	console.log TWEEN
-	createGraph = (t, f, c) ->
+
+    createGraph = (t, f, c) ->
+        time = 1000
         div = document.createElement("div")
         div.style.display = "inline-block"
         div.style.width = "200px"
@@ -32,10 +33,10 @@ define 'createGraph', ['Tween'], (TWEEN)->
 
         new TWEEN.Tween(position).to(
             x: 175
-        , 2000).easing(TWEEN.Easing.Linear.None).start()
+        , time).easing(TWEEN.Easing.Linear.None).start()
         new TWEEN.Tween(position).to(
             y: 20
-        , 2000).easing(f).onUpdate(->
+        , time).easing(f).onUpdate(->
             context.beginPath()
             context.moveTo position_old.x, position_old.y
             context.lineTo position.x, position.y

@@ -3,10 +3,10 @@
   define('createGraph', ['Tween'], function(TWEEN) {
     var createGraph;
 
-    console.log(TWEEN);
     return createGraph = function(t, f, c) {
-      var canvas, context, div, position, position_old;
+      var canvas, context, div, position, position_old, time;
 
+      time = 1000;
       div = document.createElement("div");
       div.style.display = "inline-block";
       div.style.width = "200px";
@@ -38,10 +38,10 @@
       };
       new TWEEN.Tween(position).to({
         x: 175
-      }, 2000).easing(TWEEN.Easing.Linear.None).start();
+      }, time).easing(TWEEN.Easing.Linear.None).start();
       new TWEEN.Tween(position).to({
         y: 20
-      }, 2000).easing(f).onUpdate(function() {
+      }, time).easing(f).onUpdate(function() {
         context.beginPath();
         context.moveTo(position_old.x, position_old.y);
         context.lineTo(position.x, position.y);

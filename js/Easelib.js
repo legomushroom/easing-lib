@@ -9,16 +9,31 @@
       }
 
       Easings.prototype.createEasings = function() {
-        this.Quake = {};
-        this.Quake.Out = function(t) {
-          var b;
+        var QuakeOut;
 
-          b = Math.exp(-t * 10) * Math.cos(Math.PI * 2 * t * 10);
-          if (t >= 1) {
-            return 1;
+        this.Quake = {};
+        this.Quake.Out = QuakeOut = (function() {
+          function QuakeOut(coef1, coef2) {
+            if (coef1 == null) {
+              coef1 = 5;
+            }
+            if (coef2 == null) {
+              coef2 = 5;
+            }
+            return function(t) {
+              var b;
+
+              b = Math.exp(-t * coef1) * Math.cos(Math.PI * 2 * t * coef2);
+              if (t >= 1) {
+                return 1;
+              }
+              return 1 - b;
+            };
           }
-          return 1 - b;
-        };
+
+          return QuakeOut;
+
+        })();
         return this.Quake.In = function(t) {
           var b;
 
